@@ -4,6 +4,9 @@ import de.safebaum.obfvalidator.checks.basic.Access;
 import de.safebaum.obfvalidator.checks.basic.Instance1;
 import de.safebaum.obfvalidator.checks.basic.Instance2;
 import de.safebaum.obfvalidator.checks.basic.Instance3;
+import de.safebaum.obfvalidator.checks.libs.LombokCheck;
+import de.safebaum.obfvalidator.checks.manager.Human;
+import de.safebaum.obfvalidator.checks.manager.TestManger;
 
 public class Main {
     public static String field1 = "abcdef_test_test";
@@ -12,6 +15,8 @@ public class Main {
     private static Integer successfulChecks = 0;
     public static void main(String[] args) {
         checkInstances();
+        checkAccess();
+        checkManager();
     }
 
     private static void checkInstances() {
@@ -49,8 +54,33 @@ public class Main {
         System.out.println("Done!\n");
     }
 
+    private static void checkManager() {
+        TestManger testManger = new TestManger(new Human[]
+                {new Human("Joseph", 69, 1.87), new Human("Sophie", 16, 1.70), new Human("Adi", 43, 1.86),
+                new Human("Tim", 14, 1.78), new Human("Jan", 75, 2.12)});
+        if (testManger.check()) {
+            checkPassed();
+        }else {
+            System.err.println("Check Failed!");
+        }
+    }
+
+    private static void checkLibs() {
+        LombokCheck lombokCheck = new LombokCheck("Hhehehha", 1);
+
+        String newTestSring = "Hello i am a new Test String!";
+        lombokCheck.setTestString(newTestSring);
+
+        if (lombokCheck.getTestString().equals(newTestSring)) {
+            checkPassed();
+        }else {
+            System.err.println("Check Failed!");
+        }
+    }
+
 
     public static void checkPassed() {
+        System.out.println("Successfully passed a check!");
         successfulChecks ++;
     }
 }
