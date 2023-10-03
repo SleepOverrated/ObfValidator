@@ -1,10 +1,10 @@
-package de.safebaum.obfvalidator.checks.basic;
+package de.safebaum.obfvalidator.checks.cryptography;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64;
 
-public class Encryption {
+public class StringEncryption {
 
      static int passed = 0, checks = 2;
 
